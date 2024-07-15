@@ -17,7 +17,7 @@ const Model = () => {
       width: window.innerWidth,  //800
       height: window.innerHeight  // 600
     }
-    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(sizes.width, sizes.height);
     currentMount.appendChild(renderer.domElement)
@@ -58,7 +58,7 @@ const Model = () => {
         scene.add(model);
 
         // Adjust model position and scale
-        model.position.set(0, 0, 0);
+        model.position.set(0, -0.5, 0);
         model.scale.set(1, 1, 1);
 
         // Set up the animation mixer

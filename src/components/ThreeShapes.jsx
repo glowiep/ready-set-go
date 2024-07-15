@@ -36,7 +36,7 @@ export const createPolygon = (innerRadius, outerRadius, sides, color, startAngle
   });
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.x = -Math.PI / 2  // Rotate to lay flat on the ground
-  mesh.position.y = -0.04  // Set as -0.1 to avoid z-fighting
+  mesh.position.y = -0.55  // Set as -0.1 to avoid z-fighting
 
   return mesh;
 }
@@ -76,7 +76,7 @@ export const createOctagon = (innerRadius, outerRadius, sides, color, startAngle
   const material = new THREE.MeshStandardMaterial({ color, side: THREE.DoubleSide });
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.x = -Math.PI / 2; // Rotate to lay flat on the ground
-  mesh.position.y = -0.04; // Set as -0.1 to avoid z-fighting
+  mesh.position.y = -0.55; // Set as -0.1 to avoid z-fighting
 
   return mesh;
 };

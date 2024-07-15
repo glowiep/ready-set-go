@@ -6,7 +6,6 @@ function App() {
 
   return (
     <>
-      {/* <h1>SOON TO BE A THREEJS WEBSITE</h1> */}
       <Model />
     </>
   )
