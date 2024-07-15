@@ -52,7 +52,7 @@ const Model = () => {
     // Load GLTF model
     const loader = new GLTFLoader();
     loader.load(
-      'src/assets/boxer.glb',
+      '/assets/boxer.glb',
       (gltf) => {
         const model = gltf.scene;
         scene.add(model);
