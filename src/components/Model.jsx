@@ -51,8 +51,9 @@ const Model = () => {
 
     // Load GLTF model
     const loader = new GLTFLoader();
+    const assetPath = import.meta.env.BASE_URL + 'assets/boxer.glb'; // Use BASE_URL
     loader.load(
-      '/assets/boxer.glb',
+      assetPath,
       (gltf) => {
         const model = gltf.scene;
         scene.add(model);
