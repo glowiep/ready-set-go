@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import * as THREE from "three"
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { createPolygon, createOctagon } from './ThreeShapes'
+import { createPolygon, createOctagon, createTShape } from './ThreeShapes'
 
 const Model = () => {
   const mountRef = useRef(null)
@@ -39,6 +39,19 @@ const Model = () => {
 
     // Animation mixer
     let mixer;
+
+    // Add the "T" shape at the bottom of the feet
+    const tGeometry = createTShape(1, 1.3, 0.2);
+    const tMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, side: THREE.DoubleSide }); // Blue color
+    const tMesh = new THREE.Mesh(tGeometry, tMaterial);
+    tMesh.rotation.x = -Math.PI / 2; // Rotate to lay flat on the ground
+    tMesh.rotation.z = -Math.PI/ 6;
+    
+    tMesh.position.x = -0.3; 
+    tMesh.position.y = -Math.PI / 4; 
+    tMesh.position.z = 0.5; 
+
+    scene.add(tMesh);
     
     // Create octagon geometry and fill
     const octagon = createOctagon(1, 1.2, 8, 0x00ff00, 14); // Adjust radius and height as needed

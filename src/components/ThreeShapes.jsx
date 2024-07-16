@@ -30,6 +30,8 @@ export const createPolygon = (innerRadius, outerRadius, sides, color, startAngle
   const geometry = new THREE.ShapeGeometry(shape);
   const material = new THREE.MeshStandardMaterial({
     color,
+    opacity: 0.8,
+    transparent: true,
     side: THREE.DoubleSide,
     emissive: color, // Set emissive color to match the main color
     emissiveIntensity: 1, // Adjust intensity as needed (0 to 1)
@@ -73,10 +75,36 @@ export const createOctagon = (innerRadius, outerRadius, sides, color, startAngle
   shape.closePath();
 
   const geometry = new THREE.ShapeGeometry(shape);
-  const material = new THREE.MeshStandardMaterial({ color, side: THREE.DoubleSide });
+  const material = new THREE.MeshStandardMaterial({ 
+    color, side: 
+    THREE.DoubleSide, 
+    opacity: 0.8, 
+    transparent: true
+  });
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.x = -Math.PI / 2; // Rotate to lay flat on the ground
   mesh.position.y = -0.55; // Set as -0.1 to avoid z-fighting
 
   return mesh;
+};
+
+export const createTShape = (width, height, thickness, startAngle = 0) => {
+  const shape = new THREE.Shape();
+
+  shape.moveTo(-width / 2, 0);
+  shape.lineTo(width / 2, 0);
+  shape.lineTo(width / 2, thickness);
+  shape.lineTo(thickness / 2, thickness);
+  shape.lineTo(thickness / 2, height);
+  shape.lineTo(-thickness / 2, height);
+  shape.lineTo(-thickness / 2, thickness);
+  shape.lineTo(-width / 2, thickness);
+  shape.closePath();
+
+  const geometry = new THREE.ShapeGeometry(shape);
+  
+  // Apply rotation based on the start angle
+  geometry.rotateY(startAngle);
+
+  return geometry;
 };
