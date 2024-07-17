@@ -23,12 +23,16 @@ const Model = () => {
     currentMount.appendChild(renderer.domElement)
 
     // Set up lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 19) // Soft white light
+    const ambientLight = new THREE.AmbientLight(0x404040, 5) // Soft white light
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 9);
-    directionalLight.position.set(5, 5, 5).normalize()
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
+    directionalLight.position.set(0, 7, 2).normalize()
     scene.add(directionalLight);
+    
+    const bottomLight = new THREE.DirectionalLight(0xffffff, 7);
+    bottomLight.position.set(-2, -6, -2).normalize()
+    scene.add(bottomLight);
     
     // Set up OrbitControls
     const controls = new OrbitControls(camera, renderer.domElement);
