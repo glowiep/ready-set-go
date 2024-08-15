@@ -29,12 +29,12 @@ const Model = () => {
     const ambientLight = new THREE.AmbientLight(0x404040, 5) // Soft white light
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 7);
     directionalLight.position.set(0, 7, 2).normalize()
     scene.add(directionalLight);
     
-    const bottomLight = new THREE.DirectionalLight(0xffffff, 7);
-    bottomLight.position.set(1, -3, 0).normalize()
+    const bottomLight = new THREE.DirectionalLight(0xffffff, 4);
+    bottomLight.position.set(1, -4, -1).normalize()
     scene.add(bottomLight);
     
     // Set up OrbitControls
@@ -69,12 +69,19 @@ const Model = () => {
         depth: 0.07,
       })
       const textMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
-      const brandText = new THREE.Mesh(textGeometry, textMaterial); 
+      const brandTextBack = new THREE.Mesh(textGeometry, textMaterial); 
 
-      brandText.rotation.set(0, Math.PI + 100, 0)
-      brandText.position.set(1.6, -0.5, -0.5);
+      brandTextBack.position.set(1.6, -0.48, -0.51);
+      brandTextBack.rotation.set(0, Math.PI + 100, 0)
 
-      scene.add(brandText)
+      scene.add(brandTextBack)
+      
+      const brandTextFront = new THREE.Mesh(textGeometry, textMaterial); 
+
+      brandTextFront.position.set(-1.65, -0.5, 0.5);
+      brandTextFront.rotation.set(0, 100, 0)
+
+      scene.add(brandTextFront)
     })
     
     // Create octagon geometry and fill
