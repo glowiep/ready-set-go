@@ -138,9 +138,9 @@ const Model = () => {
       }
     );
 
-    camera.position.z = -2.5;
-    camera.position.y = 1;
-    camera.position.x = 1.5;
+    camera.position.z = -3.9;
+    camera.position.y = 1.2;
+    camera.position.x = 2.3;
 
     // Clean up component mount
     return () => {
