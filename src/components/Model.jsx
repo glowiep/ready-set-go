@@ -78,30 +78,61 @@ const Model = () => {
         message = (
           <>
             The Green Octagon represents <b>"Distance"</b>. <br />
-            The furthest zone where contact happens. <br />
+            The furthest zone where contact happens. <br /><br />
             <b>🟡 Offence</b>: Long punches.<br />
             <b>🔴 Defence</b>: Keeping the distance, in and out, parrying.<br />
-            <b>⚪ Special T Moves</b>: Move 1 & Move 2.
+            <b>⚪ Special T Moves</b>: Move 1 & Move 2.<br /><br />
+            <b>Also known as <i>Passive</i></b> <br />
+            ✂
           </>
         );
         break;
       case 'red':
         message = (
           <>
-            The Red Circle represents the <br /> <b>"Danger Zone"</b> ⚠ <br />
+            The Red Circle represents the <br /> <b>"Danger Zone"</b> ⚠ <br /><br />
             <b>🟡 Offence</b>: Hooks, to the body & head.<br />
             <b>🔴 Defence</b>: Head-movement, slip, roll & under.<br />
-            <b>⚪ Special T Moves</b>: Move 3 & Move 4.
+            <b>⚪ Special T Moves</b>: Move 3 & Move 4.<br /><br />
+            <b>Also known as <i>Reactive</i></b> <br />
+            🪨
           </>
         );
         break;
       case 'blue':
         message = (
           <>
-            The Blue Triangle represents the "In-Fighting" Zone.<br />
+            The Blue Triangle represents the "In-Fighting" Zone.<br /><br />
             <b>🟡 Offence</b>: Uppercuts.<br />
             <b>🔴 Defence</b>: Down in the legs, to the side.<br />
-            <b>⚪ Special T Moves</b>: Move 5 & Move 6.
+            <b>⚪ Special T Moves</b>: Move 5 & Move 6.<br /><br />
+            <b>Also known as <i>Active</i></b> <br />
+            📄
+          </>
+        );
+        break;
+      case 'question':
+        message = (
+          <>
+            ❓ If you have any questions, talk to:<br /><br />
+            <b><a href="https://www.instagram.com/tyrone_bradshaw_boxing_coach/">Coach Tyrone Bradshaw</a></b><br />
+            <b><a href="https://www.instagram.com/kristi_cowan_holzken/">Coach Kristi</a></b><br />
+            <b><a href="https://www.instagram.com/glowiep/">Coach Gloria</a></b><br /><br />
+            
+            Or join us for a class at <br />
+            <a href="https://www.instagram.com/mississaugaelitemma/">Mississauga Elite MMA</a> Gym <br />
+            Tuesday & Thursdays 7pm
+            <br />
+            <br />
+            or
+            <br />
+            <br />
+            <a href="https://www.instagram.com/theforge.martialarts/">The Forge Martial Arts</a> Gym <br />
+            Monday & Wednesdays 8pm 
+            <br />
+            <br />
+            This web app is brought to you by <br />
+            <a href="https://github.com/glowiep/ready-set-go">Coach Gloria</a> :) 
           </>
         );
         break;
@@ -343,6 +374,25 @@ const Model = () => {
         }}
       >
         Blue
+      </button>
+
+      {/* Info button */}
+      <button
+        onClick={() => handleColorModal('question')}
+        style={{
+          position: 'fixed',
+          bottom: '10px',
+          left: '10px',
+          padding: '5px 12px',
+          backgroundColor: 'grey',
+          color: 'black',
+          border: 'none',
+          borderRadius: '50%',
+          cursor: 'pointer',
+          zIndex: 1000,  // Make sure it appears above the canvas
+        }}
+      >
+        ?
       </button>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <p>{modalContent}</p>
