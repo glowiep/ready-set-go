@@ -11,6 +11,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       right: 0,
       bottom: 0,
       backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      color: 'white',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
