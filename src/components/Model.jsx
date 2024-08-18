@@ -80,7 +80,7 @@ const Model = () => {
             The Green Octagon represents <b>"Distance"</b>. <br />
             The furthest zone where contact happens. <br /><br />
             <b>🟡 Offence</b>: Long punches.<br />
-            <b>🔴 Defence</b>: Keeping the distance, in and out, parrying.<br />
+            <b>🟣 Defence</b>: Keeping the distance, in and out, parrying.<br />
             <b>⚪ Special T Moves</b>: Move 1 & Move 2.<br /><br />
             <b>Also known as <i>Passive</i></b> <br />
             ✂
@@ -91,11 +91,12 @@ const Model = () => {
         message = (
           <>
             The Red Circle represents the <br /> <b>"Danger Zone"</b> ⚠ <br /><br />
+            HOLD YOUR GROUND <br /><br />
             <b>🟡 Offence</b>: Hooks, to the body & head.<br />
-            <b>🔴 Defence</b>: Head-movement, slip, roll & under.<br />
+            <b>🟣 Defence</b>: Head-movement, slip, roll & under.<br />
             <b>⚪ Special T Moves</b>: Move 3 & Move 4.<br /><br />
             <b>Also known as <i>Reactive</i></b> <br />
-            🪨
+            📄
           </>
         );
         break;
@@ -103,11 +104,12 @@ const Model = () => {
         message = (
           <>
             The Blue Triangle represents the <b>"In-Fighting"</b> Zone.<br /><br />
+            ON THE MOVE <br /><br />
             <b>🟡 Offence</b>: Uppercuts.<br />
-            <b>🔴 Defence</b>: Down in the legs, to the side.<br />
+            <b>🟣 Defence</b>: Down in the legs, to the side.<br />
             <b>⚪ Special T Moves</b>: Move 5 & Move 6.<br /><br />
             <b>Also known as <i>Active</i></b> <br />
-            📄
+            🪨
           </>
         );
         break;
