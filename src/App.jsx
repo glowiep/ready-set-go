@@ -5,7 +5,7 @@ import Model from './components/Model'
 function App() {
 
   return (
-    <div className="canvas-container">
+    <div className="canvas-container w-screen h-screen">
       <Model />
     </div>
   )

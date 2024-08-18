@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useRef } from 'react'
+
 import * as THREE from "three"
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -8,19 +9,125 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { Text } from '@react-three/drei';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
+import Modal from './Modal';
+
 const Model = () => {
-  const mountRef = useRef(null)
+  const mountRef = useRef(null);
+  const sceneRef  = useRef(null);
+  const cameraRef = useRef(null);
+  const controlsRef = useRef(null);
+
+  const [isSceneReady, setIsSceneReady] = React.useState(false);
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [modalContent, setModalContent] = React.useState('');
+
+  const handlePan = (option) => {
+    if (!isSceneReady || !controlsRef.current) return;
+
+    const controls = controlsRef.current;  //Position of T shape
+    const camera = cameraRef.current;
+    // Smoothly pan the camera to the T shape
+    const targetPosition = new THREE.Vector3(-0.3, 0, 0.5);  //Position of T shape
+
+    // Smoothly interpolate the camera position
+    const startPosition = controls.object.position.clone();
+    const startTarget = controls.target.clone();
+    const duration = 1.5 // Duration of the animation in seconds
+
+    const animatePan = (time) => {
+      const startTime = time;
+      const animate = (now) => {
+        const elapsedTime = (now - startTime) / 1000;
+        const t = Math.min(elapsedTime / duration, 1); // Normalied time (0 to 1)
+
+        // Interpolate the camera position
+        option === "bottom-view" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(0, -4, 0.01)), t);
+        option === "top-view-inverted" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(0, 2.7, 0)), t);
+
+        // Interpolate the target position if necessary
+        // controls.target.lerpVectors(startTarget, targetPosition, t);
+        
+        controls.update();
+
+        if (t < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      requestAnimationFrame(animate);
+    };
+    // Show pop-up
+    setTimeout(() => {
+      if (option === "bottom-view") {
+        setModalContent(
+          <>
+            The <b>"T"</b> Represents the center line which is the foundation of the <br />
+            <b>Special T Boxing Framework</b>
+          </>
+        );
+        setIsModalOpen(true);
+      }
+    }, 2000);
+    requestAnimationFrame(animatePan);
+  }
+
+  const handleColorModal = (color) => {
+    let message = '';
+    switch (color) {
+      case 'green':
+        message = (
+          <>
+            The Green Octagon represents <b>"Distance"</b>. <br />
+            The furthest zone where contact happens. <br />
+            <b>🟡 Offence</b>: Long punches.<br />
+            <b>🔴 Defence</b>: Keeping the distance, in and out, parrying.<br />
+            <b>⚪ Special T Moves</b>: Move 1 & Move 2.
+          </>
+        );
+        break;
+      case 'red':
+        message = (
+          <>
+            The Red Circle represents the <br /> <b>"Danger Zone"</b> ⚠ <br />
+            <b>🟡 Offence</b>: Hooks, to the body & head.<br />
+            <b>🔴 Defence</b>: Head-movement, slip, roll & under.<br />
+            <b>⚪ Special T Moves</b>: Move 3 & Move 4.
+          </>
+        );
+        break;
+      case 'blue':
+        message = (
+          <>
+            The Blue Triangle represents the "In-Fighting" Zone.<br />
+            <b>🟡 Offence</b>: Uppercuts.<br />
+            <b>🔴 Defence</b>: Down in the legs, to the side.<br />
+            <b>⚪ Special T Moves</b>: Move 5 & Move 6.
+          </>
+        );
+        break;
+      default:
+        message = (
+          <>
+            The "T" Represents the center line that is the foundation of the Special T Boxing Framework.
+          </>
+        );
+    }
+    setModalContent(message);
+    setIsModalOpen(true);
+  }
 
   useEffect(() => {
     const currentMount = mountRef.current;
 
     // Set up scene
     const scene = new THREE.Scene();
+    sceneRef.current = scene;
     const sizes = {
       width: window.innerWidth,  //800
       height: window.innerHeight  // 600
     }
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+    cameraRef.current = camera;
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(sizes.width, sizes.height);
     currentMount.appendChild(renderer.domElement);
@@ -39,6 +146,7 @@ const Model = () => {
     
     // Set up OrbitControls
     const controls = new OrbitControls(camera, renderer.domElement);
+    controlsRef.current = controls;  // Save the controls to a ref
     controls.enableDamping = true;  // An animation loop is required when either damping or auto-rotation are enabled
     controls.dampingFactor = 0.25;
     controls.screenSpacePanning = false;
@@ -130,7 +238,7 @@ const Model = () => {
         };
 
         animate();
-
+        setIsSceneReady(true);
       },
       undefined, 
       (error) => {
@@ -138,19 +246,108 @@ const Model = () => {
       }
     );
 
-    camera.position.z = -3.7;
-    camera.position.y = 1;
-    camera.position.x = 2.2;
+    camera.position.set(2.2, 1, -3.7);
 
     // Clean up component mount
     return () => {
       currentMount.removeChild(renderer.domElement);
-      <div></div>
     }
   }, [])
 
   return (
-    <div ref={mountRef} style={{ width: '100vw', height: '100vh' }} />
+    <div ref={mountRef} className="w-screen h-screen">
+        <button
+        onClick={() => handlePan("bottom-view")}
+        style={{
+          position: 'fixed',
+          top: '10px',
+          right: '10px',
+          padding: '10px 20px',
+          backgroundColor: 'white',
+          color: 'black',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          zIndex: 1000,  // Make sure it appears above the canvas
+        }}
+      >
+        Center Line (T)
+      </button>
+        <button
+        onClick={() => handlePan("top-view-inverted")}
+        style={{
+          position: 'fixed',
+          top: '60px',
+          right: '10px',
+          padding: '10px 20px',
+          backgroundColor: 'grey',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          zIndex: 1000,  // Make sure it appears above the canvas
+        }}
+      >
+        Top View
+      </button>
+
+      {/* Color buttons */}
+      <button
+        onClick={() => handleColorModal('green')}
+        // onClick={() => handlePan("top-view-inverted")}
+        style={{
+          position: 'fixed',
+          bottom: '10px',
+          right: '180px',
+          padding: '10px 20px',
+          backgroundColor: 'green',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          zIndex: 1000,  // Make sure it appears above the canvas
+        }}
+      >
+        Green
+      </button>
+      <button
+        onClick={() => handleColorModal('red')}
+        style={{
+          position: 'fixed',
+          bottom: '10px',
+          right: '95px',
+          padding: '10px 20px',
+          backgroundColor: 'red',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          zIndex: 1000,  // Make sure it appears above the canvas
+      }}
+      >
+        Red
+      </button>
+      <button
+        onClick={() => handleColorModal('blue')}
+        style={{
+          position: 'fixed',
+          bottom: '10px',
+          right: '10px',
+          padding: '10px 20px',
+          backgroundColor: '#007BFF',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          zIndex: 1000,  // Make sure it appears above the canvas
+        }}
+      >
+        Blue
+      </button>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <p>{modalContent}</p>
+      </Modal>
+    </div>
   );
 };
 
