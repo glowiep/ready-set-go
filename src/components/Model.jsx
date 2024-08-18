@@ -102,7 +102,7 @@ const Model = () => {
       case 'blue':
         message = (
           <>
-            The Blue Triangle represents the "In-Fighting" Zone.<br /><br />
+            The Blue Triangle represents the <b>"In-Fighting"</b> Zone.<br /><br />
             <b>🟡 Offence</b>: Uppercuts.<br />
             <b>🔴 Defence</b>: Down in the legs, to the side.<br />
             <b>⚪ Special T Moves</b>: Move 5 & Move 6.<br /><br />
