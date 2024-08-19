@@ -59,12 +59,32 @@ const Model = () => {
     // Show pop-up
     setTimeout(() => {
       if (option === "bottom-view") {
+      setModalContent(
+        <>
+          <h2>Special T Boxing 🥊</h2>
+          <h3>A Technical Guide to Fundamentas, Tactics and Technique.</h3>
+          The <b>"T"</b> Represents the center line, it is a <b>reference point</b> for you to guide your movement and footwork. <br />
+          Begin at the center of the T, with your shoulder-width apart and your weight evenly distributed. Assume the ready position.
+        </>
+        );
+        setIsModalOpen(true);
+      } else if (option === "top-view-inverted") {
         setModalContent(
           <>
-            The <b>"T"</b> Represents the center line which is the foundation of the <br />
-            <b>Special T Boxing Framework</b>
+            <h2>Keep it Simple, Not Easy 🥊</h2>
+            <h3>🟢 Passive (Distance)</h3>
+            - Representing long punches and distance control.<br />
+            - Focus on quick jabs, stright punchs, and footwork to create space.
+            <br />
+            <h3>⭕ Reactive </h3>
+            - Representing holding your ground and inside fighting.<br />
+            - Focus on tight defense, slipping, bobbing and blocking.
+            <br />
+            <h3>🔵 Active (Power)</h3>
+            - Focus on powerful, explosive punches.<br />
+            - Train with heavy bag work, focus mitts, and sparring with an emphasis on landing strong shots.
           </>
-        );
+        )
         setIsModalOpen(true);
       }
     }, 2000);
@@ -77,11 +97,13 @@ const Model = () => {
       case 'green':
         message = (
           <>
-            The Green Octagon represents <b>"Distance"</b>. <br />
+            The Green Octagon represents <b>"Distance"</b>. <br /><br />
+            <h2>🟢 DISTANCE</h2>
+            <br />
             The furthest zone where contact happens. <br /><br />
             <b>🟡 Offence</b>: Long punches.<br />
             <b>🟣 Defence</b>: Keeping the distance, in and out, parrying.<br />
-            <b>⚪ Special T Moves</b>: Move 1 & Move 2.<br /><br />
+            <b>♟ Special T Moves</b>: Move 1 & Move 2.<br /><br />
             <b>Also known as <i>Passive</i></b> <br />
             ✂
           </>
@@ -91,10 +113,11 @@ const Model = () => {
         message = (
           <>
             The Red Circle represents the <br /> <b>"Danger Zone"</b> ⚠ <br /><br />
-            HOLD YOUR GROUND <br /><br />
+            <h2>⭕ HOLD YOUR GROUND</h2>
+            <br />
             <b>🟡 Offence</b>: Hooks, to the body & head.<br />
             <b>🟣 Defence</b>: Head-movement, slip, roll & under.<br />
-            <b>⚪ Special T Moves</b>: Move 3 & Move 4.<br /><br />
+            <b>♟ Special T Moves</b>: Move 3 & Move 4.<br /><br />
             <b>Also known as <i>Reactive</i></b> <br />
             📄
           </>
@@ -103,11 +126,12 @@ const Model = () => {
       case 'blue':
         message = (
           <>
-            The Blue Triangle represents the <b>"In-Fighting"</b> Zone.<br /><br />
-            ON THE MOVE <br /><br />
-            <b>🟡 Offence</b>: Uppercuts.<br />
+            The Blue Triangle represents the <br /><b>"In-Fighting"</b> Zone.<br /><br />
+            <h2>🔵 ON THE MOVE</h2>
+            <br />
+            <b>🟡 Offence</b>: Active punching, closing the distance, uppercuts.<br />
             <b>🟣 Defence</b>: Down in the legs, to the side.<br />
-            <b>⚪ Special T Moves</b>: Move 5 & Move 6.<br /><br />
+            <b>♟ Special T Moves</b>: Move 5 & Move 6.<br /><br />
             <b>Also known as <i>Active</i></b> <br />
             🪨
           </>
@@ -321,13 +345,12 @@ const Model = () => {
           zIndex: 1000,  // Make sure it appears above the canvas
         }}
       >
-        Top View
+        Strategy ♟
       </button>
 
       {/* Color buttons */}
       <button
         onClick={() => handleColorModal('green')}
-        // onClick={() => handlePan("top-view-inverted")}
         style={{
           position: 'fixed',
           bottom: '10px',
