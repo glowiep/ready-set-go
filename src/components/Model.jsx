@@ -354,7 +354,7 @@ const Model = () => {
         style={{
           position: 'fixed',
           bottom: '10px',
-          right: '180px',
+          right: '170px',
           padding: '10px 20px',
           backgroundColor: 'green',
           color: 'white',
@@ -364,14 +364,14 @@ const Model = () => {
           zIndex: 1000,  // Make sure it appears above the canvas
         }}
       >
-        Green
+        READY
       </button>
       <button
         onClick={() => handleColorModal('red')}
         style={{
           position: 'fixed',
           bottom: '10px',
-          right: '95px',
+          right: '86px',
           padding: '10px 20px',
           backgroundColor: 'red',
           color: 'white',
@@ -381,7 +381,7 @@ const Model = () => {
           zIndex: 1000,  // Make sure it appears above the canvas
       }}
       >
-        Red
+        SET
       </button>
       <button
         onClick={() => handleColorModal('blue')}
@@ -398,7 +398,7 @@ const Model = () => {
           zIndex: 1000,  // Make sure it appears above the canvas
         }}
       >
-        Blue
+        GO
       </button>
 
       {/* Info button */}
