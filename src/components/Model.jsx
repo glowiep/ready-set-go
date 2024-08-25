@@ -43,7 +43,14 @@ const Model = () => {
 
         // Interpolate the camera position
         option === "bottom-view" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(0, -4, 0.01)), t);
-        option === "top-view-inverted" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(0, 2.7, 0)), t);
+        option === "top-view" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(1.5, 3.5, -2.5)), t);
+        option === "from-bottom-view" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(-Math.PI/3 - 1.1, -1.7, Math.PI/1.5 + 1.5)), t);
+        option === "from-top-view" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(-Math.PI/5 - 1, 2.5, Math.PI/1.5 + 0.6)), t);  //-Math.PI/4 - 1.1, 3, Math.PI/1.5 + 1
+        option === "from-front-view" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(-Math.PI/3 - 1, 1.7, Math.PI/1.5 + 1.4)), t);  //-1.8, 0, 3
+        
+        // option === "back-view-T" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(2, 2, -4)), t);
+        // option === "from-back" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(2.2, 1, -3.7)), t);
+        // option === "top-view-inverted" && controls.object.position.lerpVectors(startPosition, targetPosition.clone().add(new THREE.Vector3(0, 2.7, 0)), t);
 
         // Interpolate the target position if necessary
         // controls.target.lerpVectors(startTarget, targetPosition, t);
@@ -68,7 +75,7 @@ const Model = () => {
         </>
         );
         setIsModalOpen(true);
-      } else if (option === "top-view-inverted") {
+      } else if (option === "top-view") {
         setModalContent(
           <>
             <h2>Keep it Simple, Not Easy 🥊</h2>
@@ -83,18 +90,10 @@ const Model = () => {
             <h3>🔵 Active (On The Move)</h3>
             - Closing the distance.<br />
           </>
-        )
+        ) 
         setIsModalOpen(true);
-      }
-    }, 2000);
-    requestAnimationFrame(animatePan);
-  }
-
-  const handleColorModal = (color) => {
-    let message = '';
-    switch (color) {
-      case 'green':
-        message = (
+      } else if (option === "from-bottom-view") {  // Ready
+        setModalContent(
           <>
             <h1>Ready Your Hands</h1>
             The Green Octagon represents
@@ -107,10 +106,10 @@ const Model = () => {
             Also known as <b><i>Passive</i></b> <br />
             <h1>✂</h1>
           </>
-        );
-        break;
-      case 'red':
-        message = (
+        ) 
+        setIsModalOpen(true);
+      } else if (option === "from-top-view") {  // Set
+        setModalContent(
           <>
             <h1>Set Your Feet</h1>
             The Red Circle represents the <br /> <b>"Danger Zone"</b> ⚠ <br />
@@ -122,12 +121,12 @@ const Model = () => {
             Also known as <b><i>Reactive</i></b> <br />
             <h1>📄</h1>
           </>
-        );
-        break;
-      case 'blue':
-        message = (
+        ) 
+        setIsModalOpen(true);
+      } else if (option === "from-front-view") {  // Go
+        setModalContent(
           <>
-          <h1>GO</h1>
+            <h1>GO</h1>
             The Blue Triangle represents the <br /><b>"In-Fighting"</b> Zone.<br /><br />
             <h2>🔵 ON THE MOVE</h2>
             <b>🟡 Offence</b>: Active punching, closing the distance, uppercuts.<br />
@@ -136,8 +135,16 @@ const Model = () => {
             Also known as  <b><i>Active</i></b> <br />
             <h1>🪨</h1>
           </>
-        );
-        break;
+        ) 
+        setIsModalOpen(true);
+      }
+    }, 2100);
+    requestAnimationFrame(animatePan);
+  }
+
+  const handleColorModal = (color) => {
+    let message = '';
+    switch (color) {
       case 'question':
         message = (
           <>
@@ -330,16 +337,26 @@ const Model = () => {
     );
 
     // camera.position.set(2.2, 1, -3.7); // From the back
+    // camera.position.set(-1.8, 0, 3);  // front test
     camera.position.set(-Math.PI/3 - 1.1, 1.7, Math.PI/1.5 + 1.5);  // From the front
 
     // Clean up component mount
     return () => {
       currentMount.removeChild(renderer.domElement);
     }
-  }, [])
+  }, []);
+
+  // Log camera position on button click - for coding purposes only
+  const logCameraPosition = () => {
+    if (cameraRef.current) {
+      const { x, y, z } = cameraRef.current.position;
+      console.log(`Camera Position: ${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)}`);
+    }
+  };
 
   return (
     <div ref={mountRef} className="w-screen h-screen">
+      {/* <button onClick={logCameraPosition}>Log Camera Position</button> */}
         <button
         onClick={() => handlePan("bottom-view")}
         style={{
@@ -358,7 +375,7 @@ const Model = () => {
         Center Line (T)
       </button>
         <button
-        onClick={() => handlePan("top-view-inverted")}
+        onClick={() => handlePan("top-view")}
         style={{
           position: 'fixed',
           top: '60px',
@@ -377,7 +394,7 @@ const Model = () => {
 
       {/* Color buttons */}
       <button
-        onClick={() => handleColorModal('green')}
+        onClick={() => handlePan('from-bottom-view')}
         style={{
           position: 'fixed',
           bottom: '10px',
@@ -394,7 +411,7 @@ const Model = () => {
         READY
       </button>
       <button
-        onClick={() => handleColorModal('red')}
+        onClick={() => handlePan('from-top-view')}
         style={{
           position: 'fixed',
           bottom: '10px',
@@ -411,7 +428,7 @@ const Model = () => {
         SET
       </button>
       <button
-        onClick={() => handleColorModal('blue')}
+        onClick={() => handlePan('from-front-view')}
         style={{
           position: 'fixed',
           bottom: '10px',
@@ -447,7 +464,7 @@ const Model = () => {
         ?
       </button>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <p>{modalContent}</p>
+        <div>{modalContent}</div>
       </Modal>
     </div>
   );
