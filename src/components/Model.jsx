@@ -244,7 +244,8 @@ const Model = () => {
       
       brandTextFront = new THREE.Mesh(textGeometry, textMaterial); 
 
-      brandTextFront.position.set(-1.65, -0.5, 0.5);
+      // brandTextFront.position.set(-1.52, -0.5, 0.48);
+      brandTextFront.position.set(-1.6, -0.5, 0.5);
       brandTextFront.rotation.set(0, 100, 0)
 
       scene.add(brandTextFront)
@@ -327,7 +328,7 @@ const Model = () => {
     );
 
     // camera.position.set(2.2, 1, -3.7); // From the back
-    camera.position.set(-Math.PI/3 - 1.4, 2, Math.PI/1.5 + 1.7);
+    camera.position.set(-Math.PI/3 - 1.1, 1.7, Math.PI/1.5 + 1.5);  // From the front
 
     // Clean up component mount
     return () => {
