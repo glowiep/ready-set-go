@@ -193,11 +193,11 @@ const Model = () => {
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 7);
-    directionalLight.position.set(0, 7, 2).normalize()
+    directionalLight.position.set(-0.5, 5, 1).normalize()
     scene.add(directionalLight);
     
     const bottomLight = new THREE.DirectionalLight(0xffffff, 4);
-    bottomLight.position.set(1, -4, -1).normalize()
+    bottomLight.position.set(0.5, -3, -2).normalize()
     scene.add(bottomLight);
     
     // Set up OrbitControls
@@ -326,8 +326,8 @@ const Model = () => {
       }
     );
 
-    camera.position.set(2.2, 1, -3.7); // From the back
-    // camera.position.set(2, 1, -3);
+    // camera.position.set(2.2, 1, -3.7); // From the back
+    camera.position.set(-Math.PI/3 - 1.4, 2, Math.PI/1.5 + 1.7);
 
     // Clean up component mount
     return () => {
