@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import Model from './components/Model'
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000);
+  }, []);
 
   return (
     <div className="canvas-container w-screen h-screen">
-      <Model />
+      {isLoading ? <LoadingScreen />
+      : <Model setIsLoading={setIsLoading} />
+      }
+      {/* <LoadingScreen /> */}
     </div>
   )
 }

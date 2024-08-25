@@ -11,7 +11,7 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 import Modal from './Modal';
 
-const Model = () => {
+const Model = ({ setIsLoading }) => {
   const mountRef = useRef(null);
   const sceneRef  = useRef(null);
   const cameraRef = useRef(null);
@@ -321,6 +321,7 @@ const Model = () => {
       (gltf) => {
         const model = gltf.scene;
         scene.add(model);
+        setIsLoading(false)
 
         // Adjust model position and scale
         model.position.set(0, -0.5, 0);

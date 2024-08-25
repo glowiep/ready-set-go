@@ -1,0 +1,92 @@
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: rotate className linear infinite;
+  }
+  
+  .circle, .octagon1, .octagon2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 10px solid;
+    opacity: 0;
+    animation: fadeInOut 2s infinite;
+  }
+
+  .triangle {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border-left: 4em solid transparent;
+    border-right: 4em solid transparent;
+    border-bottom: 7em solid blue; 
+    transform: translate(-50%, -50%);
+    animation: fadeInOut 2s infinite;
+  }
+  
+  .circle {
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    border-color: red;
+    transform: translate(-50%, -50%);
+    /* animation: fadeInOut 4s infinite; */
+  }
+  
+  .octagon1 {
+    width: 14em;
+    height: 14em;
+    background: transparent;
+    border-color: green;
+    clip-path: polygon(
+        30% 0%, 
+        70% 0%, 
+        100% 30%, 
+        100% 70%, 
+        70% 100%, 
+        30% 100%, 
+        0% 70%, 
+        0% 30%
+    );
+    transform: translate(-50%, -50%);
+    /* animation: fadeInOut 4s infinite; */
+  }
+  .octagon2 {
+    width: 14em;
+    height: 14em;
+    background: transparent;
+    border-color: green;
+    clip-path: polygon(
+        30% 0%, 
+        70% 0%, 
+        100% 30%, 
+        100% 70%, 
+        70% 100%, 
+        30% 100%, 
+        0% 70%, 
+        0% 30%
+    );
+    transform: translate(-50%, -50%) rotate(45deg);
+    /* animation: fadeInOut 4s infinite; */
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
