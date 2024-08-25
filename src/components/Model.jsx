@@ -217,6 +217,30 @@ const Model = () => {
     controls.screenSpacePanning = false;
     controls.maxPolarAngle = Math.PI / 1;
 
+    // Set up audio listener. It will play after user interaction.
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    const audioLoader = new THREE.AudioLoader();
+    const sound = new THREE.Audio(listener);
+
+    audioLoader.load('audio/Tyrone_Rap_clip.mp3', function (buffer) {
+      sound.setBuffer(buffer);
+      // sound.setLoop(true); // Optional
+      sound.setVolume(0.5); // Optional
+    }, undefined, function (error) {
+      console.error('An error happened while loading audio:', error);
+  });
+    
+    const handleAudio = () => {
+      if (!sound.isPlaying) { // Check if audio is not already playing
+        sound.play();
+      }
+    };
+
+    // Attach the event handler to the button
+    document.getElementById('playButton').addEventListener('click', handleAudio);
+
     // Animation mixer
     let mixer;
 
@@ -357,6 +381,25 @@ const Model = () => {
   return (
     <div ref={mountRef} className="w-screen h-screen">
       {/* <button onClick={logCameraPosition}>Log Camera Position</button> */}
+      <button 
+      id="playButton"
+      aria-label="Play audio"
+      style={{
+        position: 'fixed',
+        top: '10px',
+        left: '10px',
+        padding: '3px 3px',
+        backgroundColor: 'honeydew',
+        color: 'black',
+        border: 'none',
+        borderRadius: '50%',
+        cursor: 'pointer',
+        fontSize: '26px',
+        zIndex: 1000,
+      }}
+      >
+        🔊
+      </button>
         <button
         onClick={() => handlePan("bottom-view")}
         style={{
@@ -447,7 +490,6 @@ const Model = () => {
 
       {/* Info button */}
       <button
-        onClick={() => handleColorModal('question')}
         style={{
           position: 'fixed',
           bottom: '10px',
