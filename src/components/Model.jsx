@@ -72,17 +72,16 @@ const Model = () => {
         setModalContent(
           <>
             <h2>Keep it Simple, Not Easy 🥊</h2>
-            <h3>🟢 Passive (Distance)</h3>
+            <h3>🟢 Passive (Outside)</h3>
             - Representing long punches and distance control.<br />
             - Focus on quick jabs, stright punchs, and footwork to create space.
             <br />
-            <h3>⭕ Reactive </h3>
+            <h3>⭕ Reactive (Inside) </h3>
             - Representing holding your ground and inside fighting.<br />
             - Focus on tight defense, slipping, bobbing and blocking.
             <br />
-            <h3>🔵 Active (Power)</h3>
-            - Focus on powerful, explosive punches.<br />
-            - Train with heavy bag work, focus mitts, and sparring with an emphasis on landing strong shots.
+            <h3>🔵 Active (On The Move)</h3>
+            - Closing the distance.<br />
           </>
         )
         setIsModalOpen(true);
@@ -225,6 +224,8 @@ const Model = () => {
 
     scene.add(tMesh);
 
+    let brandTextFront, brandTextBack;
+
     // Add brand text
     const fontLoader = new FontLoader();
     fontLoader.load('fonts/helvetiker_bold.typeface.json', (font) => {
@@ -234,20 +235,37 @@ const Model = () => {
         depth: 0.07,
       })
       const textMaterial = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
-      const brandTextBack = new THREE.Mesh(textGeometry, textMaterial); 
+      brandTextBack = new THREE.Mesh(textGeometry, textMaterial); 
 
       brandTextBack.position.set(1.6, -0.48, -0.51);
       brandTextBack.rotation.set(0, Math.PI + 100, 0)
 
       scene.add(brandTextBack)
       
-      const brandTextFront = new THREE.Mesh(textGeometry, textMaterial); 
+      brandTextFront = new THREE.Mesh(textGeometry, textMaterial); 
 
       brandTextFront.position.set(-1.65, -0.5, 0.5);
       brandTextFront.rotation.set(0, 100, 0)
 
       scene.add(brandTextFront)
     })
+
+    // Update visibility of the text based on camera position with easing effect
+    const updateVisibility = () => {
+      [brandTextFront, brandTextBack].forEach(mesh => {
+        const cameraDirection = new THREE.Vector3();
+        camera.getWorldDirection(cameraDirection);
+
+        const meshDirection = new THREE.Vector3(0, 0, 1);  // Assuming the normal is facing along Z-axis
+        mesh.localToWorld(meshDirection);
+        meshDirection.normalize();
+
+        const dotProduct = cameraDirection.dot(meshDirection);
+
+        // If dot product is positive, the camera is in front of the text
+        mesh.visible = dotProduct < 0;
+      });
+    }
     
     // Create octagon geometry and fill
     const octagon = createOctagon(1, 1.2, 8, 0x00ff00, 14); // Green Octagon
@@ -282,6 +300,8 @@ const Model = () => {
         
         const animate = () => {
           requestAnimationFrame(animate);
+
+          updateVisibility();
 
           const delta = clock.getDelta();
 
