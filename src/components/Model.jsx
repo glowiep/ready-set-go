@@ -262,8 +262,11 @@ const Model = () => {
 
         const dotProduct = cameraDirection.dot(meshDirection);
 
+        // Check the vertical component of the camera's direction
+        const verticalDotProduct = cameraDirection.y;
+
         // If dot product is positive, the camera is in front of the text
-        mesh.visible = dotProduct < 0;
+        mesh.visible = dotProduct < 0 && verticalDotProduct < 0.9;
       });
     }
     
@@ -323,7 +326,8 @@ const Model = () => {
       }
     );
 
-    camera.position.set(2.2, 1, -3.7);
+    camera.position.set(2.2, 1, -3.7); // From the back
+    // camera.position.set(2, 1, -3);
 
     // Clean up component mount
     return () => {
