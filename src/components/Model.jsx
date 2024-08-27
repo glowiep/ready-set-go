@@ -491,6 +491,7 @@ const Model = ({ setIsLoading }) => {
 
       {/* Info button */}
       <button
+        onClick={() => handleColorModal('question')}
         style={{
           position: 'fixed',
           bottom: '10px',
