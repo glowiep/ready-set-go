@@ -10,7 +10,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
       color: 'white',
       display: 'flex',
       alignItems: 'center',
@@ -24,7 +24,12 @@ const Modal = ({ isOpen, onClose, children }) => {
         width: '100%',
       }}>
         {children}
-        <button onClick={onClose}>Close</button>
+        <button 
+          onClick={onClose} 
+          style={{ marginTop: '1em' }}
+        >
+          Close
+        </button>
       </div>
     </div>
   );
