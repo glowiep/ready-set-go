@@ -81,14 +81,17 @@ const Model = ({ setIsLoading }) => {
             <h2>Keep it Simple, Not Easy 🥊</h2>
             <h3>🟢 Passive (Outside)</h3>
             - Representing long punches and distance control.<br />
-            - Focus on quick jabs, stright punchs, and footwork to create space.
+            - Focus on quick jabs, straight punches, and footwork to create space.<br />
+            - Special T Moves: 1 & 2
             <br />
             <h3>⭕ Reactive (Inside) </h3>
             - Representing holding your ground and inside fighting.<br />
-            - Focus on tight defense, slipping, bobbing and blocking.
+            - Focus on tight defense, slipping, bobbing and blocking.<br />
+            - Special T Moves: 3 & 4
             <br />
             <h3>🔵 Active (On The Move)</h3>
             - Closing the distance.<br />
+            - Special T Moves: 5 & 6
           </>
         ) 
         setIsModalOpen(true);
@@ -104,7 +107,6 @@ const Model = ({ setIsLoading }) => {
             <b>🟣 Defence</b>: Keeping the distance, in and out, parrying.<br />
             <b>♟ Special T Moves</b>: Move 1 & Move 2.<br /><br />
             Also known as <b><i>Passive</i></b> <br />
-            <h1>✂</h1>
           </>
         ) 
         setIsModalOpen(true);
@@ -119,7 +121,6 @@ const Model = ({ setIsLoading }) => {
             <b>🟣 Defence</b>: Head-movement, slip, roll & under.<br />
             <b>♟ Special T Moves</b>: Move 3 & Move 4.<br /><br />
             Also known as <b><i>Reactive</i></b> <br />
-            <h1>📄</h1>
           </>
         ) 
         setIsModalOpen(true);
@@ -133,7 +134,6 @@ const Model = ({ setIsLoading }) => {
             <b>🟣 Defence</b>: Down in the legs, to the side.<br />
             <b>♟ Special T Moves</b>: Move 5 & Move 6.<br /><br />
             Also known as  <b><i>Active</i></b> <br />
-            <h1>🪨</h1>
           </>
         ) 
         setIsModalOpen(true);
@@ -363,7 +363,8 @@ const Model = ({ setIsLoading }) => {
 
     // camera.position.set(2.2, 1, -3.7); // From the back
     // camera.position.set(-1.8, 0, 3);  // front test
-    camera.position.set(-Math.PI/3 - 1.1, 1.7, Math.PI/1.5 + 1.5);  // From the front
+    // camera.position.set(-Math.PI/3 - 1.1, 1.7, Math.PI/1.5 + 1.5);  // From the front
+    camera.position.set(-2.25, -0.56, 3.88);  // planar view
 
     // Clean up component mount
     return () => {
