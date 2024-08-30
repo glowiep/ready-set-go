@@ -80,18 +80,18 @@ const Model = ({ setIsLoading }) => {
           <>
             <h2>Keep it Simple, Not Easy 🥊</h2>
             <h3>🟢 Passive (Outside)</h3>
-            - Representing long punches and distance control.<br />
+            - Representing straight punches and distance control.<br />
             - Focus on quick jabs, straight punches, and footwork to create space.<br />
-            - Special T Moves: 1 & 2
+            <b>♟ Special T Moves</b>: Move 1 & Move 2.<br /><br />
             <br />
             <h3>⭕ Reactive (Inside) </h3>
             - Representing holding your ground and inside fighting.<br />
             - Focus on tight defense, slipping, bobbing and blocking.<br />
-            - Special T Moves: 3 & 4
+            <b>♟ Special T Moves</b>: Move 3 & Move 4.<br /><br />
             <br />
             <h3>🔵 Active (On The Move)</h3>
-            - Closing the distance.<br />
-            - Special T Moves: 5 & 6
+            - Representing Closing the distance.<br />
+            <b>♟ Special T Moves</b>: Move 5 & Move 6.<br /><br />
           </>
         ) 
         setIsModalOpen(true);
@@ -101,12 +101,13 @@ const Model = ({ setIsLoading }) => {
             <h1>Ready Your Hands</h1>
             The Green Octagon represents
             <h2>🟢 DISTANCE</h2>
-            <br />
             The furthest zone where contact happens. <br /><br />
-            <b>🟡 Offence</b>: Long punches.<br />
-            <b>🟣 Defence</b>: Keeping the distance, in and out, parrying.<br />
-            <b>♟ Special T Moves</b>: Move 1 & Move 2.<br /><br />
-            Also known as <b><i>Passive</i></b> <br />
+            <b>🟡 Offence</b>:
+            <br />
+            Straight punches.<br /><br />
+            <b>🟣 Defence</b>:
+            <br />
+            Keeping the distance, in and out.<br />
           </>
         ) 
         setIsModalOpen(true);
@@ -116,11 +117,12 @@ const Model = ({ setIsLoading }) => {
             <h1>Set Your Feet</h1>
             The Red Circle represents the <br /> <b>"Danger Zone"</b> ⚠ <br />
             <h2>⭕ HOLD YOUR GROUND</h2>
+            <b>🟡 Offence</b>:
             <br />
-            <b>🟡 Offence</b>: Hooks, to the body & head.<br />
-            <b>🟣 Defence</b>: Head-movement, slip, roll & under.<br />
-            <b>♟ Special T Moves</b>: Move 3 & Move 4.<br /><br />
-            Also known as <b><i>Reactive</i></b> <br />
+            Hooks, to the body & head.<br /><br />
+            <b>🟣 Defence</b>:
+            <br />
+            Head-movement, slip, roll & under.<br />
           </>
         ) 
         setIsModalOpen(true);
@@ -130,10 +132,12 @@ const Model = ({ setIsLoading }) => {
             <h1>GO</h1>
             The Blue Triangle represents the <br /><b>"In-Fighting"</b> Zone.<br /><br />
             <h2>🔵 ON THE MOVE</h2>
-            <b>🟡 Offence</b>: Active punching, closing the distance, uppercuts.<br />
-            <b>🟣 Defence</b>: Down in the legs, to the side.<br />
-            <b>♟ Special T Moves</b>: Move 5 & Move 6.<br /><br />
-            Also known as  <b><i>Active</i></b> <br />
+            <b>🟡 Offence</b>:
+            <br />
+            Active punching, closing the distance, uppercuts.<br /><br />
+            <b>🟣 Defence</b>:
+            <br />
+            Down in the legs, to the side.<br />
           </>
         ) 
         setIsModalOpen(true);
