@@ -77,7 +77,8 @@ const Model = ({ setIsLoading }) => {
           🥊The centre lines where you begin, <br /><b>READY</b> your hands with your elbows tucked in.<br /><br />
           🥊<b>SET</b> your lead foot on the top of the T, <br />chin down knees bent shoulders 45°.<br /><br />
           🥊It’s your READY position using your Special T, <br />so you can float like a butterfly and sting like a bee.<br /><br />
-          🥊Now you’re READY, SET to train Special T way - let’s <b>GO</b>, <br />say what you do and do what you say.
+          🥊Now you’re READY, SET to train Special T way - let’s <b>GO</b>, <br />say what you do and do what you say.<br /><br />
+          - Tyrone Bradshaw
         </>
         );
         setIsModalOpen(true);
