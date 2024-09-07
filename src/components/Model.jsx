@@ -72,12 +72,12 @@ const Model = ({ setIsLoading }) => {
           <h3>A Technical Guide to Fundamentas, Tactics and Technique.</h3>
           {/* The <b>"T"</b> Represents the center line, it is a <b>reference point</b> for you to guide your movement and footwork. <br />
           Begin at the center of the T, with your shoulder-width apart and your weight evenly distributed. Assume the ready position. */}
-          Put your Special T down on the ground, <br />so you can match your movements with your sound.<br /> 
-          The Special T is Tactical, <br />it lets you know where your feet must go.<br /> 
-          The centre lines where you begin, <br /><span class="text-lime-300"><b>READY</b></span> your hands with your elbows tucked in.<br /> 
-          <b>SET</b> your lead foot on the top of the T, <br />chin down knees bent shoulders 45°.<br /> 
-          It’s your READY position using your Special T, <br />so you can float like a butterfly and sting like a bee.<br /> 
-          Now you’re READY, SET to train Special T way - let’s <b>GO</b>, <br />say what you do and do what you say.
+          🥊Put your Special T down on the ground, <br />so you can match your movements with your sound.<br /><br />
+          🥊The Special T is Tactical, <br />it lets you know where your feet must go.<br /><br />
+          🥊The centre lines where you begin, <br /><b>READY</b> your hands with your elbows tucked in.<br /><br />
+          🥊<b>SET</b> your lead foot on the top of the T, <br />chin down knees bent shoulders 45°.<br /><br />
+          🥊It’s your READY position using your Special T, <br />so you can float like a butterfly and sting like a bee.<br /><br />
+          🥊Now you’re READY, SET to train Special T way - let’s <b>GO</b>, <br />say what you do and do what you say.
         </>
         );
         setIsModalOpen(true);
