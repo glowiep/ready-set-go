@@ -114,7 +114,7 @@ const Model = ({ setIsLoading }) => {
             Straight punches.<br /><br />
             <b>🟣 Defence</b>:
             <br />
-            Keeping the distance, in and out.<br />
+            Keeping the distance, stick and move.<br />
           </>
         ) 
         setIsModalOpen(true);
