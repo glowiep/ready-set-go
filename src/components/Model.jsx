@@ -445,7 +445,7 @@ const Model = ({ setIsLoading }) => {
           zIndex: 1000,  // Make sure it appears above the canvas
         }}
       >
-        Strategy ♟
+        Tactics ♟
       </button>
 
       {/* Color buttons */}
